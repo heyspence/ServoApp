@@ -3,20 +3,21 @@ import { colors } from './colors';
 
 export const globalStyles = StyleSheet.create({
 	button: {
-		position: 'relative',
-		width: 78,
-		height: 34,
-		color: colors.primaryWhite,
 		backgroundColor: colors.primaryBlue,
 		textDecoration: 'none',
 		borderRadius: 8,
 		fontSize: 15,
-		paddingHorizontal: 8,
 		whiteSpace: 'nowrap',
-		margin: 5,
-		fontWeight: 'bold',
 		border: 'none',
+        alignItems: 'center',
+        justifyContent: 'center',
+        paddingHorizontal: 10,
+        paddingVertical: 10
 	},
+    buttonText: {
+        color: colors.primaryWhite,
+		fontWeight: 'bold',
+    },
 	buttonHover: {
 		backgroundColor: colors.secondaryBlue,
 		cursor: 'pointer',
