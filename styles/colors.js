@@ -1,0 +1,17 @@
+export const colors = {
+	primaryBlue: 'rgb(35, 37, 78)',
+	secondaryBlue: 'rgb(53, 55, 113)',
+	primaryWhite: 'rgb(255, 255, 255)',
+	secondaryWhite: 'rgb(247, 247, 247)',
+	tertiaryWhite: 'rgba(255, 255, 255, 0.4)',
+	primaryBlack: 'rgb(25, 25, 25)',
+	secondaryBlack: 'rgb(73, 73, 73)',
+	primaryGray: 'rgb(73, 73, 73)',
+	secondaryGray: 'rgb(178, 178, 178)',
+	tertiaryGray: '#ccc',
+	primaryYellow: 'rgb(244, 188, 70)',
+	primaryGreen: 'rgba(99, 196, 102, 0.9)',
+	secondaryGreen: 'rgb(99, 196, 102)',
+	primaryRed: 'rgb(215, 23, 23)',
+	secondaryRed: 'rgb(192, 32, 0)',
+};
