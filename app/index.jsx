@@ -10,9 +10,18 @@ import {
 import { colors } from '../styles/colors';
 import { globalStyles } from '../styles/globalStyles';
 import logos from '../constants/logos.js';
+import VendorIndex from '../components/VendorIndex';
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { fetchVendors } from '../store/vendor';
 
 const SplashPage = () => {
-    
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		dispatch(fetchVendors());
+	}, [dispatch]);
+
 	return (
 		<ScrollView>
 			<ImageBackground
@@ -82,6 +91,13 @@ const SplashPage = () => {
 					</View>
 				</View>
 			</View>
+
+			{/* <View style={styles.homeMain}>
+				<VendorIndex category='house_cleaning' />
+				<VendorIndex category='pest_control' />
+				<VendorIndex category='window_cleaning' />
+				<VendorIndex category='garbage_can_cleaning' />
+			</View> */}
 
 			<View style={styles.logoSection}>
 				{logos.map((item, index) => (
