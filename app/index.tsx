@@ -12,6 +12,7 @@ import { globalStyles } from '../styles/globalStyles';
 import logos from '../constants/logos.js';
 
 const SplashPage = () => {
+    
 	return (
 		<ScrollView>
 			<ImageBackground
@@ -22,9 +23,11 @@ const SplashPage = () => {
 				resizeMode='cover'
 			>
 				<View style={styles.container}>
-					<Text style={styles.onlineShopping}>
+					<Text style={styles.onlineShoppingText}>
 						Online Shopping{'\n'}
-						<Text style={styles.forYourHome}>For Your Home</Text>
+						<Text style={styles.forYourHomeText}>
+							For Your Home
+						</Text>
 					</Text>
 				</View>
 			</ImageBackground>
@@ -34,6 +37,7 @@ const SplashPage = () => {
 					We make convenience...{' '}
 					<Text style={styles.italic}>more convenient.</Text>
 				</Text>
+
 				<View style={styles.threeStepSection}>
 					<View style={styles.splashPageIcon}>
 						<Image
@@ -83,7 +87,7 @@ const SplashPage = () => {
 				{logos.map((item, index) => (
 					<TouchableOpacity key={index} style={styles.logoContainer}>
 						<Image
-							style={styles.splashPageLogo}
+							style={styles.individualLogo}
 							source={{ uri: item.logo }}
 						/>
 					</TouchableOpacity>
@@ -92,24 +96,24 @@ const SplashPage = () => {
 
 			<View style={[styles.splashPageSection, styles.ctaContainer]}>
 				<Image
-					style={styles.splashPageImage}
+					style={styles.ctaImage}
 					source={{
 						uri: 'https://spencerheywood.com/images/servo/Pictures/garbage_can_cleaning/test.avif/Servo%20Pictures-43.avif',
 					}}
 				/>
-				<View style={styles.sectionText}>
-					<Text style={styles.title}>
+				<View style={styles.ctaSectionText}>
+					<Text style={styles.ctaTitle}>
 						Calling All Service Providers!
 					</Text>
-					<Text style={styles.subtitle}>
+					<Text style={styles.ctaSubtitle}>
 						Do you run a service-oriented business in St. George?
 						Grow your business with Servo.
 					</Text>
 					<TouchableOpacity
-						style={styles.button}
+						style={styles.ctaButton}
 						// onPress={handleLearnMoreClick}
 					>
-						<Text style={styles.buttonText}>Learn More</Text>
+						<Text style={styles.ctaButtonText}>Learn More</Text>
 					</TouchableOpacity>
 				</View>
 			</View>
@@ -129,16 +133,17 @@ const styles = StyleSheet.create({
 		right: '5%',
 		top: 215,
 	},
-	onlineShopping: {
+	onlineShoppingText: {
 		textAlign: 'right',
 		fontWeight: 'bold',
 		fontSize: 39,
 		color: colors.primaryBlue,
 	},
-	forYourHome: {
+	forYourHomeText: {
 		color: colors.primaryWhite,
 	},
 
+	// threeStepSection
 	splashPageSection: {
 		flexDirection: 'column',
 		paddingTop: 50,
@@ -175,6 +180,7 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 	},
 
+	// logoSection
 	logoSection: {
 		flexDirection: 'row',
 		flexWrap: 'wrap',
@@ -186,41 +192,42 @@ const styles = StyleSheet.create({
 		margin: 13,
 		borderRadius: 10,
 	},
-	splashPageLogo: {
+	individualLogo: {
 		height: 95,
 		width: 95,
 		objectFit: 'contain',
 	},
 
+	// cta
 	ctaContainer: {
 		paddingHorizontal: 0,
 		height: 600,
 		alignItems: 'center',
 	},
-	splashPageImage: {
+	ctaImage: {
 		width: '100%',
 		height: 300,
 	},
-	sectionText: {
+	ctaSectionText: {
 		width: '80%',
 	},
-	title: {
+	ctaTitle: {
 		...globalStyles.h2,
 		marginTop: 30,
 		marginBottom: 5,
 	},
-	subtitle: {
+	ctaSubtitle: {
 		...globalStyles.h3,
 		fontWeight: 'normal',
 		lineHeight: 20,
 		marginBottom: 15,
 	},
-	button: {
+	ctaButton: {
 		...globalStyles.button,
 		backgroundColor: colors.primaryYellow,
 		width: '55%',
 	},
-	buttonText: {
+	ctaButtonText: {
 		...globalStyles.buttonText,
 	},
 });
