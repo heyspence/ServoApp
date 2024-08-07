@@ -196,6 +196,10 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 	},
 
+    homeMain: {
+        marginVertical: 40,
+    },
+
 	// logoSection
 	logoSection: {
 		flexDirection: 'row',

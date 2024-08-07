@@ -55,12 +55,11 @@ export default function VendorIndexItem({ vendor }) {
 const styles = StyleSheet.create({
 	vendorIndexItem: {
 		borderRadius: 8,
-		margin: 10,
 		// backgroundColor: 'pink',
 		backgroundColor: colors.secondaryWhite,
 		// width: 200,
-		width: 150,
-		backgroundColor: 'red',
+		width: 170,
+		// backgroundColor: 'red',
 	},
 	vendorIndexImageContainer: {
 		height: 175,

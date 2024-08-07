@@ -32,8 +32,9 @@ export default function VendorIndex({ category, fromHome = false }) {
 				data={vendors}
 				keyExtractor={(vendor) => vendor.id.toString()}
 				renderItem={({ item }) => <VendorIndexItem vendor={item} />}
-				// style={styles.vendorIndex}
-				// contentContainerStyle={styles.vendorList}
+				style={styles.vendorIndex}
+				columnWrapperStyle={styles.vendorList}
+				numColumns={2}
 			/>
 		</View>
 	);
@@ -43,20 +44,18 @@ const styles = StyleSheet.create({
 	vendorIndexContainer: {
 		padding: 16,
 		backgroundColor: colors.primaryWhite,
-		flex: 1,
-		backgroundColor: 'blue',
+		// backgroundColor: 'blue',
 	},
 	heading: {
 		...globalStyles.h1,
 		marginVertical: 25,
 	},
-	// vendorIndex: {
-	// 	// flex: 1,
-	// 	width: 200,
-	// 	backgroundColor: 'blue',
-	// },
-	// vendorList: {
-	// 	paddingBottom: 16,
-	// 	backgroundColor: 'pink',
-	// },
+	vendorIndex: {
+		width: '100%',
+		// backgroundColor: 'pink',
+	},
+	vendorList: {
+		// backgroundColor: 'pink',
+        justifyContent: 'space-between'
+	},
 });
