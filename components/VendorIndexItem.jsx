@@ -2,8 +2,8 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/globalStyles';
 import { colors } from '../styles/colors';
-import StarSvg from '../assets/svg/StarSvg';
-
+import { SvgXml } from 'react-native-svg';
+import reviewStar from '../assets/svg/reviewStar.js'
 
 export default function VendorIndexItem({ vendor }) {
 	const { id, name, thumbnailImageUrl, avgRating, reviewCount } = vendor;
@@ -34,7 +34,7 @@ export default function VendorIndexItem({ vendor }) {
 						<Text style={styles.formattedAvgRating}>
 							{formattedAvgRating}
 						</Text>
-						<StarSvg style={styles.reviewStarSvg} />;
+						<SvgXml xml={reviewStar} width='16' height='16' style={styles.reviewStarSvg} />
 						<Text style={styles.reviewCount}>({reviewCount})</Text>
 					</View>
 				</View>
@@ -84,15 +84,14 @@ const styles = StyleSheet.create({
 	macroReviewContainer: {
 		flexDirection: 'row',
 		alignItems: 'center',
-		gap: 5,
+		gap: 2,
 	},
 	formattedAvgRating: {
 		...globalStyles.h3,
 		fontSize: 13,
 	},
 	reviewStarSvg: {
-		margin: -2,
-		marginHorizontal: 6,
+		marginRight: 5,
 		verticalAlign: 'middle',
 		transform: [{ scale: 0.9 }],
 	},
