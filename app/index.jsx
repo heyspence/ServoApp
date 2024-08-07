@@ -196,9 +196,10 @@ const styles = StyleSheet.create({
 		marginBottom: 20,
 	},
 
-    homeMain: {
-        marginVertical: 40,
-    },
+	homeMain: {
+		paddingBottom: 25,
+		backgroundColor: colors.primaryWhite,
+	},
 
 	// logoSection
 	logoSection: {

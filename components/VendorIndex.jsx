@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 import VendorIndexItem from '../components/VendorIndexItem';
 import { parsedCategory } from '../util/formatting';
 import { globalStyles } from '../styles/globalStyles';
-import { colors } from '../styles/colors';
 
 export default function VendorIndex({ category, fromHome = false }) {
 	const navigation = useNavigation();
@@ -28,14 +27,11 @@ export default function VendorIndex({ category, fromHome = false }) {
 	return (
 		<View style={styles.vendorIndexContainer}>
 			{!fromHome && <Text style={styles.heading}>{vendorCategory}</Text>}
-			<FlatList
-				data={vendors}
-				keyExtractor={(vendor) => vendor.id.toString()}
-				renderItem={({ item }) => <VendorIndexItem vendor={item} />}
-				style={styles.vendorIndex}
-				columnWrapperStyle={styles.vendorList}
-				numColumns={2}
-			/>
+			<View style={styles.vendorList}>
+				{vendors.map((vendor) => (
+					<VendorIndexItem key={vendor.id} vendor={vendor} />
+				))}
+			</View>
 		</View>
 	);
 }
@@ -43,19 +39,14 @@ export default function VendorIndex({ category, fromHome = false }) {
 const styles = StyleSheet.create({
 	vendorIndexContainer: {
 		padding: 16,
-		backgroundColor: colors.primaryWhite,
-		// backgroundColor: 'blue',
 	},
 	heading: {
 		...globalStyles.h1,
 		marginVertical: 25,
 	},
-	vendorIndex: {
-		width: '100%',
-		// backgroundColor: 'pink',
-	},
 	vendorList: {
-		// backgroundColor: 'pink',
-        justifyContent: 'space-between'
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		justifyContent: 'space-between',
 	},
 });

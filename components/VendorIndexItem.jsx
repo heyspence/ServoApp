@@ -2,16 +2,11 @@ import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { globalStyles } from '../styles/globalStyles';
 import { colors } from '../styles/colors';
+import StarSvg from '../assets/svg/StarSvg';
+
 
 export default function VendorIndexItem({ vendor }) {
-	const {
-		id,
-		name,
-		thumbnailImageUrl,
-		logoImageUrl,
-		avgRating,
-		reviewCount,
-	} = vendor;
+	const { id, name, thumbnailImageUrl, avgRating, reviewCount } = vendor;
 
 	const navigation = useNavigation();
 
@@ -33,17 +28,13 @@ export default function VendorIndexItem({ vendor }) {
 				/>
 			</View>
 			<View style={styles.vendorIndexItemMetaInfoContainer}>
-				{/* <Image
-					source={{ uri: logoImageUrl }}
-					style={styles.logoImage}
-				/> */}
 				<View style={styles.vendorIndexItemMetaInfo}>
 					<Text style={styles.vendorName}>{name}</Text>
 					<View style={styles.macroReviewContainer}>
 						<Text style={styles.formattedAvgRating}>
 							{formattedAvgRating}
 						</Text>
-						{/* svg */}
+						<StarSvg style={styles.reviewStarSvg} />;
 						<Text style={styles.reviewCount}>({reviewCount})</Text>
 					</View>
 				</View>
@@ -80,15 +71,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		padding: 12,
 	},
-	// logoImage: {
-	// 	width: 55,
-	// 	height: 55,
-	// 	backgroundColor: '#FFFFFF',
-	// 	padding: 5,
-	// 	borderRadius: 5,
-	// 	marginRight: 12,
-	// 	flexShrink: 0,
-	// },
 	vendorIndexItemMetaInfo: {
 		width: '100%',
 	},
