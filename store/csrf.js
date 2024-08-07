@@ -1,7 +1,5 @@
 const apiUrl = process.env.EXPO_PUBLIC_API_URL;
 
-console.log(apiUrl); 
-
 export const fetchWithFormData = async (url, formData, method) => {
 	const options = {
 		method: method.toUpperCase(), // Ensure method is in uppercase

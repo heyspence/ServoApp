@@ -92,12 +92,12 @@ const SplashPage = () => {
 				</View>
 			</View>
 
-			{/* <View style={styles.homeMain}>
+			<View style={styles.homeMain}>
 				<VendorIndex category='house_cleaning' />
 				<VendorIndex category='pest_control' />
 				<VendorIndex category='window_cleaning' />
 				<VendorIndex category='garbage_can_cleaning' />
-			</View> */}
+			</View>
 
 			<View style={styles.logoSection}>
 				{logos.map((item, index) => (
