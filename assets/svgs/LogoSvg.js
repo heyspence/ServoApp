@@ -1,11 +1,12 @@
-import { useHistory, useLocation } from 'react-router-dom/cjs/react-router-dom.min'
+import { useRouter } from 'expo-router'
+import { useLocation } from 'react-router-dom'
 
 const LogoSvg = (onClick) => {
 	const location = useLocation()
-	const history = useHistory()
+	const router = useRouter()
 
 	const handleLogoClick = () => {
-		history.push('/')
+		router.push('/')
 	}
 
 	const getPageClass = () => {

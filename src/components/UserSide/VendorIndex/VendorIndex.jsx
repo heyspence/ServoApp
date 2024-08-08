@@ -2,9 +2,9 @@ import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useNavigation } from '@react-navigation/native'
 import { View, Text, StyleSheet } from 'react-native'
-import VendorIndexItem from '../VendorIndex/VendorIndexItem'
-import { parsedCategory } from '../../utils/formatting'
-import { globalStyles } from '../../styles/globalStyles'
+import VendorIndexItem from './VendorIndexItem'
+import { parsedCategory } from '../../../utils/formatting'
+import { globalStyles } from '../../../styles/globalStyles'
 
 export default function VendorIndex({ category, fromHome = false }) {
 	const navigation = useNavigation()

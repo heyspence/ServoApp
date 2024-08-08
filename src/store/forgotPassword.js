@@ -21,7 +21,7 @@ export const forgotPassword = (email, setSuccessMsg) => async (dispatch) => {
 	}
 }
 
-export const resetPassword = (resetPasswordData, history) => async (dispatch) => {
+export const resetPassword = (resetPasswordData, router) => async (dispatch) => {
 	const res = await csrfFetch(`/api/password/reset`, {
 		headers: { 'Content-Type': 'application/json' },
 		method: 'POST',
@@ -36,7 +36,7 @@ export const resetPassword = (resetPasswordData, history) => async (dispatch) =>
 		dispatch(setCurrentUser(data.user))
 		dispatch(setHomeView(data.user.userType))
 		if (data.vendor) dispatch(setCurrentVendor(data.vendor))
-		history.push('/password/reset/complete')
+		router.push('/password/reset/complete')
 	} else {
 		dispatch(receiveErrors(data.errors))
 	}

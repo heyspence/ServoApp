@@ -9,9 +9,9 @@ import {
 } from 'react-native'
 import { colors } from '../src/styles/colors.js'
 import { globalStyles } from '../src/styles/globalStyles.js'
-import VendorIndex from '../src/components/VendorIndex/VendorIndex.jsx'
+import VendorIndex from '../src/components/UserSide/VendorIndex/VendorIndex.jsx'
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { fetchVendors } from '../src/store/vendors'
 import { useRouter } from 'expo-router'
 import { logoRedirects, logos } from '../src/utils/logos'
@@ -19,6 +19,7 @@ import { logoRedirects, logos } from '../src/utils/logos'
 const SplashPage = () => {
 	const dispatch = useDispatch()
 	const router = useRouter()
+	const scrollViewRef = useRef(null)
 
 	useEffect(() => {
 		dispatch(fetchVendors())
@@ -31,8 +32,13 @@ const SplashPage = () => {
 		// }
 	}
 
+	const handleLearnMoreClick = () => {
+		router.push('/vendorOnboarding')
+		scrollViewRef.current.scrollTo({ y: 0, animated: true })
+	}
+
 	return (
-		<ScrollView>
+		<ScrollView ref={scrollViewRef}>
 			<ImageBackground
 				source={{
 					uri: 'https://spencerheywood.com/images/servo/Pictures/web_optimized/servo_web_banner.avif',
@@ -124,10 +130,7 @@ const SplashPage = () => {
 					<Text style={styles.ctaSubtitle}>
 						Do you run a service-oriented business in St. George? Grow your business with Servo.
 					</Text>
-					<TouchableOpacity
-						style={styles.ctaButton}
-						// onPress={handleLearnMoreClick}
-					>
+					<TouchableOpacity style={styles.ctaButton} onPress={handleLearnMoreClick}>
 						<Text style={styles.ctaButtonText}>Learn More</Text>
 					</TouchableOpacity>
 				</View>

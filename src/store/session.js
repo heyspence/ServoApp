@@ -66,7 +66,7 @@ export const selectCurrentUser = (state) => (state?.session ? state.session.user
 export const isLoggedIn = (state) => !!selectCurrentUser(state)
 
 export const signUp =
-	(user, history = null, isOnGuestCheckout = false, onGuestSignUpOrInSuccess = null) =>
+	(user, router = null, isOnGuestCheckout = false, onGuestSignUpOrInSuccess = null) =>
 	async (dispatch) => {
 		const res = await csrfFetch(`/api/users`, {
 			headers: { 'Content-Type': 'application/json' },
@@ -82,7 +82,7 @@ export const signUp =
 			dispatch(setHomeView(data.user.userType))
 			dispatch(setAddresses(data.addresses))
 
-			if (history) history.push('/home') // if user is logging in from anywhere other than show
+			if (router) router.push('/home') // if user is logging in from anywhere other than show
 			if (!isOnGuestCheckout) dispatch(closeModal())
 			onGuestSignUpOrInSuccess?.()
 		} else {
@@ -90,7 +90,7 @@ export const signUp =
 		}
 	}
 
-export const vendorSignUp = (vendor, history) => async (dispatch) => {
+export const vendorSignUp = (vendor, router) => async (dispatch) => {
 	const res = await csrfFetch(`/api/vendors`, {
 		headers: { 'Content-Type': 'application/json' },
 		method: 'POST',
@@ -106,7 +106,7 @@ export const vendorSignUp = (vendor, history) => async (dispatch) => {
 		dispatch(setAddresses(data.addresses))
 		dispatch(setHomeView('vendor'))
 		dispatch(closeModal())
-		history.push('/')
+		router.push('/')
 	} else {
 		dispatch(receiveErrors(data.errors))
 	}
@@ -137,7 +137,7 @@ export const restoreSession = () => async (dispatch) => {
 }
 
 export const signIn =
-	(user, history, isOnGuestCheckout = false, onGuestSignUpOrInSuccess = null) =>
+	(user, router, isOnGuestCheckout = false, onGuestSignUpOrInSuccess = null) =>
 	async (dispatch) => {
 		const attemptSignIn = async (retryCount = 0) => {
 			const maxRetries = 1
@@ -158,7 +158,7 @@ export const signIn =
 					if (data.orders) dispatch(receiveOrders({ orders: data.orders }))
 
 					if (data.vendor) dispatch(setCurrentVendor(data.vendor))
-					else if (history) history.push('/home')
+					else if (router) router.push('/home')
 
 					if (!isOnGuestCheckout) dispatch(closeModal())
 					onGuestSignUpOrInSuccess?.()

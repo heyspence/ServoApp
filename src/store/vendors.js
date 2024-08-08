@@ -39,7 +39,7 @@ export const fetchVendors = () => async (dispatch) => {
 }
 
 export const fetchVendor =
-	(vendorId, history, updateSessionVendor = null) =>
+	(vendorId, router, updateSessionVendor = null) =>
 	async (dispatch) => {
 		try {
 			const res = await csrfFetch(`/api/vendors/${vendorId}`)
@@ -50,7 +50,7 @@ export const fetchVendor =
 				else dispatch(recieveVendor(data))
 			} else {
 				console.error('Failed to fetch vendor data:', data.error)
-				history.push('/')
+				router.push('/')
 			}
 		} catch (error) {
 			console.error('Error fetching vendor:', error)
