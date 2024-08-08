@@ -2,7 +2,7 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 const thunk = require('redux-thunk').thunk;
 import sessionReducer from './session';
 import errorsReducer from './errors';
-import vendorsReducer from './vendor';
+import vendorsReducer from './vendors';
 import bookingsReducer from './bookings';
 import reviewsReducer from './reviews';
 import ordersReducer from './orders';

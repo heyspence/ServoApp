@@ -1,9 +1,8 @@
 import csrfFetch from './csrf';
 import { receiveVendorCalendarData, setCurrentVendor } from './session';
-import { stripTimeZone } from '../util/timeUtils';
+import { stripTimeZone } from '../utils/timeUtils';
 import { receiveErrors } from './errors';
 import { closeModal } from './ui';
-import Config from 'react-native-config';
 
 const RECEIVE_VENDORS = 'vendors/RECEIVE_VENDORS';
 const RECEIVE_VENDOR = 'vendor/RECEIVE_VENDOR';

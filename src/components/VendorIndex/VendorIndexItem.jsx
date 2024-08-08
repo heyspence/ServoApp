@@ -1,9 +1,9 @@
 import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { globalStyles } from '../styles/globalStyles';
-import { colors } from '../styles/colors';
+import { globalStyles } from '../../styles/globalStyles.js';
+import { colors } from '../../styles/colors.js';
 import { SvgXml } from 'react-native-svg';
-import reviewStar from '../assets/svg/reviewStar.js'
+import reviewStar from '../../../assets/svgs/reviewStar.js'
 
 export default function VendorIndexItem({ vendor }) {
 	const { id, name, thumbnailImageUrl, avgRating, reviewCount } = vendor;
