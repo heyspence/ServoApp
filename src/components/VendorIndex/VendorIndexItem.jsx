@@ -1,46 +1,38 @@
-import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import { globalStyles } from '../../styles/globalStyles.js';
-import { colors } from '../../styles/colors.js';
-import { SvgXml } from 'react-native-svg';
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native'
+import { useNavigation } from '@react-navigation/native'
+import { globalStyles } from '../../styles/globalStyles.js'
+import { colors } from '../../styles/colors.js'
+import { SvgXml } from 'react-native-svg'
 import reviewStar from '../../../assets/svgs/reviewStar.js'
 
 export default function VendorIndexItem({ vendor }) {
-	const { id, name, thumbnailImageUrl, avgRating, reviewCount } = vendor;
+	const { id, name, thumbnailImageUrl, avgRating, reviewCount } = vendor
 
-	const navigation = useNavigation();
+	const navigation = useNavigation()
 
 	const vendorRedirect = () => {
-		navigation.navigate('VendorDetails', { vendorId: id });
-	};
+		navigation.navigate('VendorDetails', { vendorId: id })
+	}
 
-	let formattedAvgRating = reviewCount > 0 ? avgRating : 'New Service!';
+	let formattedAvgRating = reviewCount > 0 ? avgRating : 'New Service!'
 
 	return (
-		<TouchableOpacity
-			style={styles.vendorIndexItem}
-			onPress={vendorRedirect}
-		>
+		<TouchableOpacity style={styles.vendorIndexItem} onPress={vendorRedirect}>
 			<View style={styles.vendorIndexImageContainer}>
-				<Image
-					source={{ uri: thumbnailImageUrl }}
-					style={styles.thumbnailImage}
-				/>
+				<Image source={{ uri: thumbnailImageUrl }} style={styles.thumbnailImage} />
 			</View>
 			<View style={styles.vendorIndexItemMetaInfoContainer}>
 				<View style={styles.vendorIndexItemMetaInfo}>
 					<Text style={styles.vendorName}>{name}</Text>
 					<View style={styles.macroReviewContainer}>
-						<Text style={styles.formattedAvgRating}>
-							{formattedAvgRating}
-						</Text>
-						<SvgXml xml={reviewStar} width='16' height='16' style={styles.reviewStarSvg} />
+						<Text style={styles.formattedAvgRating}>{formattedAvgRating}</Text>
+						<SvgXml xml={reviewStar} width="16" height="16" style={styles.reviewStarSvg} />
 						<Text style={styles.reviewCount}>({reviewCount})</Text>
 					</View>
 				</View>
 			</View>
 		</TouchableOpacity>
-	);
+	)
 }
 
 const styles = StyleSheet.create({
@@ -98,4 +90,4 @@ const styles = StyleSheet.create({
 	reviewCount: {
 		color: colors.secondaryGray,
 	},
-});
+})

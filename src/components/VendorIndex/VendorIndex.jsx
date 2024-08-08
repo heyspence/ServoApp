@@ -1,28 +1,26 @@
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useNavigation } from '@react-navigation/native';
-import { View, Text, StyleSheet } from 'react-native';
-import VendorIndexItem from '../VendorIndex/VendorIndexItem';
-import { parsedCategory } from '../../utils/formatting';
-import { globalStyles } from '../../styles/globalStyles';
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { useNavigation } from '@react-navigation/native'
+import { View, Text, StyleSheet } from 'react-native'
+import VendorIndexItem from '../VendorIndex/VendorIndexItem'
+import { parsedCategory } from '../../utils/formatting'
+import { globalStyles } from '../../styles/globalStyles'
 
 export default function VendorIndex({ category, fromHome = false }) {
-	const navigation = useNavigation();
+	const navigation = useNavigation()
 
-	const allVendors = useSelector((state) => state.vendors);
-	const homeView = useSelector((state) => state.ui?.homeView);
-	const vendorId = useSelector((state) => state.session.user?.vendorId);
+	const allVendors = useSelector((state) => state.vendors)
+	const homeView = useSelector((state) => state.ui?.homeView)
+	const vendorId = useSelector((state) => state.session.user?.vendorId)
 
 	const vendors = allVendors
-		? Object.values(allVendors).filter(
-				(vendor) => vendor.category === category
-		  )
-		: [];
-	const vendorCategory = parsedCategory(category);
+		? Object.values(allVendors).filter((vendor) => vendor.category === category)
+		: []
+	const vendorCategory = parsedCategory(category)
 
 	useEffect(() => {
-		if (homeView === 'vendor') navigation.navigate('Orders');
-	}, [vendorId, homeView, navigation]);
+		if (homeView === 'vendor') navigation.navigate('Orders')
+	}, [vendorId, homeView, navigation])
 
 	return (
 		<View style={styles.vendorIndexContainer}>
@@ -33,7 +31,7 @@ export default function VendorIndex({ category, fromHome = false }) {
 				))}
 			</View>
 		</View>
-	);
+	)
 }
 
 const styles = StyleSheet.create({
@@ -49,4 +47,4 @@ const styles = StyleSheet.create({
 		flexWrap: 'wrap',
 		justifyContent: 'space-between',
 	},
-});
+})
