@@ -17,13 +17,13 @@ const RECEIVE_EVENTS = 'events/RECEIVE_EVENTS'
 // }
 
 const eventsReducer = (state = {}, action) => {
-    let newState = {...state}
-    switch(action.type){
-        case(RECEIVE_EVENTS):
-            return action.events
-        default:
-            return newState
-    }
+	let newState = { ...state }
+	switch (action.type) {
+		case RECEIVE_EVENTS:
+			return action.events
+		default:
+			return newState
+	}
 }
 
-export default eventsReducer;
+export default eventsReducer

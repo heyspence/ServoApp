@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { colors } from './colors';
+import { StyleSheet } from 'react-native'
+import { colors } from './colors'
 
 export const globalStyles = StyleSheet.create({
 	button: {
@@ -9,15 +9,15 @@ export const globalStyles = StyleSheet.create({
 		fontSize: 15,
 		whiteSpace: 'nowrap',
 		border: 'none',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingHorizontal: 10,
-        paddingVertical: 10
+		alignItems: 'center',
+		justifyContent: 'center',
+		paddingHorizontal: 10,
+		paddingVertical: 10,
 	},
-    buttonText: {
-        color: colors.primaryWhite,
+	buttonText: {
+		color: colors.primaryWhite,
 		fontWeight: 'bold',
-    },
+	},
 	buttonHover: {
 		backgroundColor: colors.secondaryBlue,
 		cursor: 'pointer',
@@ -92,4 +92,4 @@ export const globalStyles = StyleSheet.create({
 	errors: {
 		color: colors.primaryYellow,
 	},
-});
+})

@@ -14,4 +14,4 @@ export const colors = {
 	secondaryGreen: 'rgb(99, 196, 102)',
 	primaryRed: 'rgb(215, 23, 23)',
 	secondaryRed: 'rgb(192, 32, 0)',
-};
+}

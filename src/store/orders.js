@@ -1,10 +1,10 @@
 // import consumer from '../channels/consumer';
-import csrfFetch from './csrf';
-import { receiveErrors } from './errors';
-import { closeModal } from './ui';
+import csrfFetch from './csrf'
+import { receiveErrors } from './errors'
+import { closeModal } from './ui'
 
-const RECEIVE_ORDERS = 'orders/RECEIVE_ORDERS';
-const RECEIVE_ORDER = 'orders/RECEIVE_ORDER';
+const RECEIVE_ORDERS = 'orders/RECEIVE_ORDERS'
+const RECEIVE_ORDER = 'orders/RECEIVE_ORDER'
 
 // export const receiveOrders = (orders) => ({
 //     type: RECEIVE_ORDERS,
@@ -116,16 +116,16 @@ const RECEIVE_ORDER = 'orders/RECEIVE_ORDER';
 //     };
 
 const ordersReducer = (state = {}, action) => {
-    let newState = { ...state };
+	let newState = { ...state }
 
-    switch (action.type) {
-        case RECEIVE_ORDERS:
-            return { ...action.orders.orders };
-        case RECEIVE_ORDER:
-            return { ...newState, ...action.order };
-        default:
-            return newState;
-    }
-};
+	switch (action.type) {
+		case RECEIVE_ORDERS:
+			return { ...action.orders.orders }
+		case RECEIVE_ORDER:
+			return { ...newState, ...action.order }
+		default:
+			return newState
+	}
+}
 
-export default ordersReducer;
+export default ordersReducer

@@ -19,23 +19,22 @@
 
 // export { convertToMountainTime };
 
-
 // import { parseISO, format } from 'date-fns';
 
 const stripTimeZone = (calendarData) => {
-    const stripTimezone = (dateStr) => {
-        const date = parseISO(dateStr); // Parse the ISO date string to a Date object
-        const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS"); // Format without timezone
-        return formattedDate;
-    };
+	const stripTimezone = (dateStr) => {
+		const date = parseISO(dateStr) // Parse the ISO date string to a Date object
+		const formattedDate = format(date, "yyyy-MM-dd'T'HH:mm:ss.SSS") // Format without timezone
+		return formattedDate
+	}
 
-    return calendarData?.map(item => {
-        const formattedDate = stripTimezone(item.start_time);
-        return {
-            ...item,
-            start_time: formattedDate
-        };
-    });
-};
+	return calendarData?.map((item) => {
+		const formattedDate = stripTimezone(item.start_time)
+		return {
+			...item,
+			start_time: formattedDate,
+		}
+	})
+}
 
-export { stripTimeZone };
+export { stripTimeZone }
