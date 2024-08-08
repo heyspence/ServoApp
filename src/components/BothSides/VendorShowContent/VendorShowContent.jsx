@@ -1,9 +1,11 @@
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { View, Text } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
-import { getActiveAddress } from '../../store/addresses'
-import { useMemo, useState } from 'react'
-import { fetchCalendarData } from '../../store/vendors'
+import { getActiveAddress } from '../../../store/addresses'
+import { useEffect, useMemo, useState } from 'react'
+import { fetchCalendarData } from '../../../store/vendors'
+import VendorMeta from './VendorShowContentChildren/VendorMeta'
+import { addDays, format, parseISO } from 'date-fns'
 
 export default function VendorShowContent({ vendor, calendarData, galleryImageUrls }) {
 	const vendorId = vendor?.id
@@ -24,7 +26,6 @@ export default function VendorShowContent({ vendor, calendarData, galleryImageUr
 	})
 	const activeAddress = useSelector(getActiveAddress)
 
-	// const [displayDisclaimerBottom, setDisplayDisclaimerBottom] = useState(window.innerWidth < 1000)
 	const [isCalendarLoading, setIsCalendarLoading] = useState(true)
 	const [openComponent, setOpenComponent] = useState({
 		pricing: true,
@@ -43,7 +44,6 @@ export default function VendorShowContent({ vendor, calendarData, galleryImageUr
 	const formattedNextAvailAppt = format(nextAvailAppt, 'EEE, MMM do')
 	const bookingStatus = vendorBooking?.status
 	const isAllComponentsClosed = Object.values(openComponent).every((val) => val === false)
-	let isMobile = true
 
 	// useEffect(() => {
 	// 	if (homeView === 'vendor') router.push('/dashboard/orders')
@@ -83,9 +83,107 @@ export default function VendorShowContent({ vendor, calendarData, galleryImageUr
 	// 	}
 	// }, [queryParams.open_payment_gateway, dispatch])
 
-	return (
-		<View>
-			<Text>VendorShowContent</Text>
-		</View>
+	// Click handlers
+	const handleScheduleClick = ({ bypass }) => {
+		if ((bookingStatus && !openComponent.pricing) || bypass) {
+			if (openComponent['summary'] === false) setIsCalendarLoading(true)
+			setOpenComponent({
+				pricing: false,
+				scheduling: true,
+				summary: false,
+			})
+		}
+	}
+
+	const handleGetPriceClick = () => {
+		setOpenComponent({
+			pricing: true,
+			scheduling: false,
+			summary: false,
+		})
+	}
+
+	const handleSummaryClick = ({ bypass = false, scheduling = false } = {}) => {
+		if (scheduling) {
+			setOpenComponent({
+				pricing: false,
+				scheduling: true,
+				summary: false,
+			})
+		} else if (
+			((bookingStatus === 'scheduled' || bookingStatus === 'pending') &&
+				!openComponent.scheduling) ||
+			bypass
+		) {
+			setOpenComponent({
+				pricing: false,
+				scheduling: false,
+				summary: true,
+			})
+		}
+	}
+
+	const handleCheckout = () => {
+		let bookingData = {
+			...vendorBooking,
+			status: 'pending',
+			userId: user?.id,
+			addressId: activeAddress?.id,
+		}
+
+		dispatch(updateBooking({ booking: bookingData }))
+		dispatch(
+			openModal('payment-gateway', {
+				booking: bookingData,
+				resetComponents,
+			}),
+		)
+	}
+
+	const resetComponents = () => {
+		setOpenComponent({
+			pricing: true,
+			scheduling: false,
+			summary: false,
+		})
+	}
+
+	const formattedDate = () => {
+		const apptAtWithoutTimezone = vendorBooking?.appointmentAt?.replace(/([-+]\d{2}:\d{2})/, '')
+		if (vendorBooking?.appointmentAt) {
+			return format(apptAtWithoutTimezone, 'MMM do @ h:mm')
+		} else {
+			return '--'
+		}
+	}
+
+	const basePricingDiv = (
+		<div className="pricing-preview">
+			Starting at: <br />${vendor?.minPrice ? vendor.minPrice.toFixed(2) : '--'}
+		</div>
 	)
+
+	const confirmedPricingDiv = (
+		<div className="pricing-preview--confirmed">
+			Custom Quote
+			<div className="green-text"> ${vendorBooking?.price.toFixed(2)}</div>
+		</div>
+	)
+
+	const defaultSchedulingDiv = (
+		<div className="scheduling-preview">
+			Next Available Appointment:
+			<br />
+			{formattedNextAvailAppt}
+		</div>
+	)
+
+	const confirmedSchedulingDiv = (
+		<div className="scheduling-preview--confirmed">
+			<div>Service Date</div>
+			<p className="green-text">{formattedDate()}</p>
+		</div>
+	)
+
+	return <VendorMeta />
 }

@@ -2,7 +2,7 @@ import { useLocalSearchParams, useRouter } from 'expo-router'
 import { fetchVendor } from '../../src/store/vendors'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
-import VendorShowContent from '../../src/components/BothSides/VendorShowContent'
+import VendorShowContent from '../../src/components/BothSides/VendorShowContent/VendorShowContent'
 
 export default function VendorShow() {
 	const { id } = useLocalSearchParams()
