@@ -3,3 +3,5 @@ build
 dist
 *.min.js
 .expo
+ios
+android

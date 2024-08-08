@@ -6,21 +6,30 @@ import {
 	ScrollView,
 	Image,
 	TouchableOpacity,
-} from 'react-native';
-import { colors } from '../styles/colors.js';
-import { globalStyles } from '../styles/globalStyles.js';
-import logos from '../constants/logos.js';
-import VendorIndex from '../components/VendorIndex/VendorIndex';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchVendors } from '../store/vendors.js';
+} from 'react-native'
+import { colors } from '../styles/colors.js'
+import { globalStyles } from '../styles/globalStyles.js'
+import VendorIndex from '../components/VendorIndex/VendorIndex'
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { fetchVendors } from '../store/vendors.js'
+import { useRouter } from 'expo-router'
+import { logoRedirects, logos } from '../utils/logos.js'
 
 const SplashPage = () => {
-	const dispatch = useDispatch();
+	const dispatch = useDispatch()
+	const router = useRouter()
 
 	useEffect(() => {
-		dispatch(fetchVendors());
-	}, [dispatch]);
+		dispatch(fetchVendors())
+	}, [dispatch])
+
+	const handleLogoClick = (target) => {
+		// if (process.env.NODE_ENV === 'production') {
+		const screenName = logoRedirects[target] || '/'
+		router.push(screenName)
+		// }
+	}
 
 	return (
 		<ScrollView>
@@ -29,22 +38,19 @@ const SplashPage = () => {
 					uri: 'https://spencerheywood.com/images/servo/Pictures/web_optimized/servo_web_banner.avif',
 				}}
 				style={styles.background}
-				resizeMode='cover'
+				resizeMode="cover"
 			>
 				<View style={styles.container}>
 					<Text style={styles.onlineShoppingText}>
 						Online Shopping{'\n'}
-						<Text style={styles.forYourHomeText}>
-							For Your Home
-						</Text>
+						<Text style={styles.forYourHomeText}>For Your Home</Text>
 					</Text>
 				</View>
 			</ImageBackground>
 
 			<View style={styles.splashPageSection}>
 				<Text style={styles.sectionHeader}>
-					We make convenience...{' '}
-					<Text style={styles.italic}>more convenient.</Text>
+					We make convenience... <Text style={styles.italic}>more convenient.</Text>
 				</Text>
 
 				<View style={styles.threeStepSection}>
@@ -57,8 +63,7 @@ const SplashPage = () => {
 						/>
 						<Text style={styles.splashPageH3}>Online Quote</Text>
 						<Text style={styles.iconText}>
-							No waiting, no surprises. Uncover your exact cost in
-							moments.
+							No waiting, no surprises. Uncover your exact cost in moments.
 						</Text>
 					</View>
 					<View style={styles.splashPageIcon}>
@@ -68,12 +73,9 @@ const SplashPage = () => {
 								uri: 'https://spencerheywood.com/images/servo/icons/icons%203/icon_clear_bkgd/icons-08.png',
 							}}
 						/>
-						<Text style={styles.splashPageH3}>
-							Instant Schedule
-						</Text>
+						<Text style={styles.splashPageH3}>Instant Schedule</Text>
 						<Text style={styles.iconText}>
-							Select the time that works for you. It’s as simple
-							as picking a day on your calendar.
+							Select the time that works for you. It’s as simple as picking a day on your calendar.
 						</Text>
 					</View>
 					<View style={styles.splashPageIcon}>
@@ -85,27 +87,27 @@ const SplashPage = () => {
 						/>
 						<Text style={styles.splashPageH3}>Secure Pay</Text>
 						<Text style={styles.iconText}>
-							Rest easy knowing your payment and personal details
-							are protected.
+							Rest easy knowing your payment and personal details are protected.
 						</Text>
 					</View>
 				</View>
 			</View>
 
 			<View style={styles.homeMain}>
-				<VendorIndex category='house_cleaning' />
-				<VendorIndex category='pest_control' />
-				<VendorIndex category='window_cleaning' />
-				<VendorIndex category='garbage_can_cleaning' />
+				<VendorIndex category="house_cleaning" />
+				<VendorIndex category="pest_control" />
+				<VendorIndex category="window_cleaning" />
+				<VendorIndex category="garbage_can_cleaning" />
 			</View>
 
 			<View style={styles.logoSection}>
 				{logos.map((item, index) => (
-					<TouchableOpacity key={index} style={styles.logoContainer}>
-						<Image
-							style={styles.individualLogo}
-							source={{ uri: item.logo }}
-						/>
+					<TouchableOpacity
+						key={index}
+						style={styles.logoContainer}
+						onPress={() => handleLogoClick(item.target)}
+					>
+						<Image style={styles.individualLogo} source={{ uri: item.logo }} />
 					</TouchableOpacity>
 				))}
 			</View>
@@ -118,12 +120,9 @@ const SplashPage = () => {
 					}}
 				/>
 				<View style={styles.ctaSectionText}>
-					<Text style={styles.ctaTitle}>
-						Calling All Service Providers!
-					</Text>
+					<Text style={styles.ctaTitle}>Calling All Service Providers!</Text>
 					<Text style={styles.ctaSubtitle}>
-						Do you run a service-oriented business in St. George?
-						Grow your business with Servo.
+						Do you run a service-oriented business in St. George? Grow your business with Servo.
 					</Text>
 					<TouchableOpacity
 						style={styles.ctaButton}
@@ -134,8 +133,8 @@ const SplashPage = () => {
 				</View>
 			</View>
 		</ScrollView>
-	);
-};
+	)
+}
 
 const styles = StyleSheet.create({
 	background: {
@@ -251,6 +250,6 @@ const styles = StyleSheet.create({
 	ctaButtonText: {
 		...globalStyles.buttonText,
 	},
-});
+})
 
-export default SplashPage;
+export default SplashPage

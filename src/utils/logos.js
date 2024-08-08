@@ -1,4 +1,4 @@
-export default [
+export const logos = [
 	{
 		logo: 'https://spencerheywood.com/images/servo/Pictures/web_optimized/bug_blasters_pest_control_logo.png',
 		target: 'bug_blasters_pest_control',
@@ -59,4 +59,22 @@ export default [
 		logo: 'https://spencerheywood.com/images/servo/Pictures/web_optimized/BBLogo-Color-RGB-1.png',
 		target: 'bin_blasters',
 	},
-];
+]
+
+export const logoRedirects = {
+	bug_blasters_pest_control: '/vendorDetail/22',
+	lily_maid_cleaning: '/vendorDetail/41',
+	summit_pest_control: '/vendorDetail/62',
+	moxie_pest_control: '/vendorDetail/39',
+	southwest_exterminators: '/vendorDetail/46',
+	zion_cleaning_co: '/vendorDetail/23',
+	insight_window_cleaning: '/vendorDetail/53',
+	turbo_pest_control: '/vendorDetail/52',
+	pro_window_cleaning: '/vendorDetail/42',
+	zing_services: '/vendorDetail/21',
+	all_seasons_cleaning: '/vendorDetail/59',
+	shakespeare_pest_control: '/vendorDetail/45',
+	dynamic_superior_services: '/vendorDetail/54',
+	bin_blasters: '/vendorDetail/66',
+	pure_window_cleaning: '/vendorDetail/65',
+}
