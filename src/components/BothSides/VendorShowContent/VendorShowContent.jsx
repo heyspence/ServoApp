@@ -185,5 +185,5 @@ export default function VendorShowContent({ vendor, calendarData, galleryImageUr
 		</div>
 	)
 
-	return <VendorMeta />
+	return <VendorMeta vendor={vendor} />
 }

@@ -19,7 +19,7 @@
 
 // export { convertToMountainTime };
 
-// import { parseISO, format } from 'date-fns';
+import { parseISO, format } from 'date-fns'
 
 const stripTimeZone = (calendarData) => {
 	const stripTimezone = (dateStr) => {
